@@ -134,11 +134,11 @@
 
         public async Task Execute(BehaviorContext<TInstance, TData> context, Behavior<TInstance, TData> next)
         {
-            ConsumeEventContext<TInstance, TData> consumeContext = context.CreateConsumeContext();
+            ConsumeEventContext<TInstance> consumeContext = context.CreateConsumeContext<TInstance>();
 
-            var requestMessage = _messageFactory?.Invoke(consumeContext) ?? await _asyncMessageFactory(consumeContext).ConfigureAwait(false);
+            var requestMessage = _messageFactory?.Invoke(context) ?? await _asyncMessageFactory(context).ConfigureAwait(false);
 
-            await SendRequest(context, consumeContext, requestMessage, _serviceAddressProvider(consumeContext)).ConfigureAwait(false);
+            await SendRequest(context, consumeContext, requestMessage, _serviceAddressProvider(context)).ConfigureAwait(false);
 
             await next.Execute(context).ConfigureAwait(false);
         }

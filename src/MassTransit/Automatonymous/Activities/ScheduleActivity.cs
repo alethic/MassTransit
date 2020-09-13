@@ -149,13 +149,13 @@
         {
             Guid? previousTokenId = _schedule.GetTokenId(context.Instance);
 
-            ConsumeEventContext<TInstance, TData> consumeContext = context.CreateConsumeContext();
+            ConsumeEventContext<TInstance> consumeContext = context.CreateConsumeContext<TInstance>();
 
             var schedulerContext = context.GetPayload<MessageSchedulerContext>();
 
-            var message = _messageFactory?.Invoke(consumeContext) ?? await _asyncMessageFactory(consumeContext).ConfigureAwait(false);
+            var message = _messageFactory?.Invoke(context) ?? await _asyncMessageFactory(context).ConfigureAwait(false);
 
-            var scheduledTime = _timeProvider(consumeContext);
+            var scheduledTime = _timeProvider(context);
 
             ScheduledMessage<TMessage> scheduledMessage = await schedulerContext.ScheduleSend(scheduledTime, message, _sendPipe).ConfigureAwait(false);
 

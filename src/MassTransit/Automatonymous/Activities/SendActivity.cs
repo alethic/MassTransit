@@ -224,20 +224,20 @@
 
         async Task Activity<TInstance, TData>.Execute(BehaviorContext<TInstance, TData> context, Behavior<TInstance, TData> next)
         {
-            ConsumeEventContext<TInstance, TData> consumeContext = context.CreateConsumeContext();
+            ConsumeEventContext<TInstance> consumeContext = context.CreateConsumeContext<TInstance>();
 
-            var message = _messageFactory?.Invoke(consumeContext) ?? await _asyncMessageFactory(consumeContext).ConfigureAwait(false);
+            var message = _messageFactory?.Invoke(context) ?? await _asyncMessageFactory(context).ConfigureAwait(false);
 
             IPipe<SendContext<TMessage>> sendPipe = _contextCallback != null
                 ? Pipe.Execute<SendContext<TMessage>>(sendContext =>
                 {
-                    _contextCallback(consumeContext, sendContext);
+                    _contextCallback(context, sendContext);
                 })
                 : Pipe.Empty<SendContext<TMessage>>();
 
             if (_destinationAddressProvider != null)
             {
-                var destinationAddress = _destinationAddressProvider(consumeContext);
+                var destinationAddress = _destinationAddressProvider(context);
 
                 var endpoint = await consumeContext.GetSendEndpoint(destinationAddress).ConfigureAwait(false);
 

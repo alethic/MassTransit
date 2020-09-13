@@ -32,7 +32,7 @@ namespace Automatonymous.Activities
 
         public async Task Execute(BehaviorContext<TInstance, TData> context, Behavior<TInstance, TData> next)
         {
-            ConsumeEventContext<TInstance, TData> consumeContext = context.CreateConsumeContext();
+            ConsumeEventContext<TInstance> consumeContext = context.CreateConsumeContext<TInstance>();
 
             InitializeContext<RequestCompleted<TData>> initializeContext = await MessageInitializerCache<RequestCompleted<TData>>.Initialize(new
             {
@@ -89,14 +89,14 @@ namespace Automatonymous.Activities
 
         public async Task Execute(BehaviorContext<TInstance, TData> context, Behavior<TInstance, TData> next)
         {
-            ConsumeEventContext<TInstance, TData> consumeContext = context.CreateConsumeContext();
+            ConsumeEventContext<TInstance> consumeContext = context.CreateConsumeContext<TInstance>();
 
             InitializeContext<RequestCompleted<TData>> initializeContext = await MessageInitializerCache<RequestCompleted<TData>>.Initialize(new
             {
                 context.Instance.CorrelationId,
                 InVar.Timestamp,
                 PayloadType = TypeMetadataCache<TData>.MessageTypeNames,
-                Payload = _messageFactory(consumeContext)
+                Payload = _messageFactory(context)
             }).ConfigureAwait(false);
 
             object message = initializeContext.Message;

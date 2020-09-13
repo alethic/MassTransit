@@ -45,9 +45,9 @@ namespace Automatonymous.Activities
 
         async Task Activity<TInstance, TData>.Execute(BehaviorContext<TInstance, TData> context, Behavior<TInstance, TData> next)
         {
-            ConsumeEventContext<TInstance, TData> consumeContext = context.CreateConsumeContext();
+            ConsumeEventContext<TInstance> consumeContext = context.CreateConsumeContext<TInstance>();
 
-            var message = _messageFactory?.Invoke(consumeContext) ?? await _asyncMessageFactory(consumeContext).ConfigureAwait(false);
+            var message = _messageFactory?.Invoke(context) ?? await _asyncMessageFactory(context).ConfigureAwait(false);
 
             await consumeContext.RespondAsync(message, _responsePipe).ConfigureAwait(false);
 

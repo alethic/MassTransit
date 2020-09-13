@@ -31,7 +31,7 @@ namespace Automatonymous.Activities
 
         public async Task Execute(BehaviorContext<RequestState, RequestFaulted> context, Behavior<RequestState, RequestFaulted> next)
         {
-            ConsumeEventContext<RequestState, RequestFaulted> consumeContext = context.CreateConsumeContext();
+            ConsumeEventContext<RequestState> consumeContext = context.CreateConsumeContext<RequestState>();
 
             if (!context.Instance.ExpirationTime.HasValue || context.Instance.ExpirationTime.Value > DateTime.UtcNow)
             {

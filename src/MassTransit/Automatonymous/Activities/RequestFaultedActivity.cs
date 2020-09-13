@@ -34,7 +34,7 @@ namespace Automatonymous.Activities
 
         public async Task Execute(BehaviorContext<TInstance, TData> context, Behavior<TInstance, TData> next)
         {
-            ConsumeEventContext<TInstance, TData> consumeContext = context.CreateConsumeContext();
+            ConsumeEventContext<TInstance> consumeContext = context.CreateConsumeContext<TInstance>();
 
             var payload = context.Data as Fault;
 

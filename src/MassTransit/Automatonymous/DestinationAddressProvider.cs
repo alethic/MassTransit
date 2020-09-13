@@ -9,7 +9,7 @@
     /// <typeparam name="TInstance">The saga instance</typeparam>
     /// <typeparam name="TData">The message data</typeparam>
     /// <returns></returns>
-    public delegate Uri DestinationAddressProvider<in TInstance, in TData>(ConsumeEventContext<TInstance, TData> context)
+    public delegate Uri DestinationAddressProvider<in TInstance, in TData>(EventContext<TInstance, TData> context)
         where TInstance : SagaStateMachineInstance
         where TData : class;
 
@@ -30,6 +30,6 @@
     /// </summary>
     /// <typeparam name="TInstance">The saga instance</typeparam>
     /// <returns></returns>
-    public delegate Uri DestinationAddressProvider<in TInstance>(ConsumeEventContext<TInstance> context)
+    public delegate Uri DestinationAddressProvider<in TInstance>(EventContext<TInstance> context)
         where TInstance : SagaStateMachineInstance;
 }

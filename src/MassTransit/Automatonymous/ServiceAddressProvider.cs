@@ -9,7 +9,7 @@ namespace Automatonymous
     /// <typeparam name="TInstance"></typeparam>
     /// <param name="context"></param>
     /// <returns></returns>
-    public delegate Uri ServiceAddressProvider<in TInstance>(ConsumeEventContext<TInstance> context);
+    public delegate Uri ServiceAddressProvider<in TInstance>(EventContext<TInstance> context);
 
 
     /// <summary>
@@ -19,6 +19,6 @@ namespace Automatonymous
     /// <typeparam name="TData"></typeparam>
     /// <param name="context"></param>
     /// <returns></returns>
-    public delegate Uri ServiceAddressProvider<in TInstance, in TData>(ConsumeEventContext<TInstance, TData> context)
+    public delegate Uri ServiceAddressProvider<in TInstance, in TData>(EventContext<TInstance, TData> context)
         where TData : class;
 }
