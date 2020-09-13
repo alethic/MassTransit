@@ -2,8 +2,11 @@ namespace Automatonymous
 {
     using System;
     using System.Threading.Tasks;
+
     using Activities;
+
     using Binders;
+
     using MassTransit;
 
 
@@ -14,7 +17,7 @@ namespace Automatonymous
             where TInstance : class, SagaStateMachineInstance
             where TMessage : class
         {
-            DateTime TimeProvider(ConsumeEventContext<TInstance> context)
+            DateTime TimeProvider(EventContext<TInstance> context)
             {
                 return DateTime.UtcNow + schedule.Delay;
             }
@@ -27,7 +30,7 @@ namespace Automatonymous
             where TInstance : class, SagaStateMachineInstance
             where TMessage : class
         {
-            DateTime TimeProvider(ConsumeEventContext<TInstance> context)
+            DateTime TimeProvider(EventContext<TInstance> context)
             {
                 return DateTime.UtcNow + schedule.Delay;
             }
@@ -41,7 +44,7 @@ namespace Automatonymous
             where TInstance : class, SagaStateMachineInstance
             where TMessage : class
         {
-            DateTime TimeProvider(ConsumeEventContext<TInstance> context)
+            DateTime TimeProvider(EventContext<TInstance> context)
             {
                 return DateTime.UtcNow + delayProvider(context);
             }
@@ -55,7 +58,7 @@ namespace Automatonymous
             where TInstance : class, SagaStateMachineInstance
             where TMessage : class
         {
-            DateTime TimeProvider(ConsumeEventContext<TInstance> context)
+            DateTime TimeProvider(EventContext<TInstance> context)
             {
                 return DateTime.UtcNow + delayProvider(context);
             }
@@ -69,7 +72,7 @@ namespace Automatonymous
             where TInstance : class, SagaStateMachineInstance
             where TMessage : class
         {
-            DateTime TimeProvider(ConsumeEventContext<TInstance> context)
+            DateTime TimeProvider(EventContext<TInstance> context)
             {
                 return DateTime.UtcNow + schedule.Delay;
             }
@@ -83,7 +86,7 @@ namespace Automatonymous
             where TInstance : class, SagaStateMachineInstance
             where TMessage : class
         {
-            DateTime TimeProvider(ConsumeEventContext<TInstance> context)
+            DateTime TimeProvider(EventContext<TInstance> context)
             {
                 return DateTime.UtcNow + schedule.Delay;
             }
@@ -97,7 +100,7 @@ namespace Automatonymous
             where TInstance : class, SagaStateMachineInstance
             where TMessage : class
         {
-            DateTime TimeProvider(ConsumeEventContext<TInstance> context)
+            DateTime TimeProvider(EventContext<TInstance> context)
             {
                 return DateTime.UtcNow + delayProvider(context);
             }
@@ -111,7 +114,7 @@ namespace Automatonymous
             where TInstance : class, SagaStateMachineInstance
             where TMessage : class
         {
-            DateTime TimeProvider(ConsumeEventContext<TInstance> context)
+            DateTime TimeProvider(EventContext<TInstance> context)
             {
                 return DateTime.UtcNow + delayProvider(context);
             }
@@ -125,7 +128,7 @@ namespace Automatonymous
             where TData : class
             where TMessage : class
         {
-            DateTime TimeProvider(ConsumeEventContext<TInstance, TData> context)
+            DateTime TimeProvider(EventContext<TInstance, TData> context)
             {
                 return DateTime.UtcNow + schedule.Delay;
             }
@@ -139,7 +142,7 @@ namespace Automatonymous
             where TData : class
             where TMessage : class
         {
-            DateTime TimeProvider(ConsumeEventContext<TInstance, TData> context)
+            DateTime TimeProvider(EventContext<TInstance, TData> context)
             {
                 return DateTime.UtcNow + schedule.Delay;
             }
@@ -154,7 +157,7 @@ namespace Automatonymous
             where TData : class
             where TMessage : class
         {
-            DateTime TimeProvider(ConsumeEventContext<TInstance, TData> context)
+            DateTime TimeProvider(EventContext<TInstance, TData> context)
             {
                 return DateTime.UtcNow + delayProvider(context);
             }
@@ -169,7 +172,7 @@ namespace Automatonymous
             where TData : class
             where TMessage : class
         {
-            DateTime TimeProvider(ConsumeEventContext<TInstance, TData> context)
+            DateTime TimeProvider(EventContext<TInstance, TData> context)
             {
                 return DateTime.UtcNow + delayProvider(context);
             }
@@ -184,7 +187,7 @@ namespace Automatonymous
             where TData : class
             where TMessage : class
         {
-            DateTime TimeProvider(ConsumeEventContext<TInstance, TData> context)
+            DateTime TimeProvider(EventContext<TInstance, TData> context)
             {
                 return DateTime.UtcNow + schedule.Delay;
             }
@@ -200,7 +203,7 @@ namespace Automatonymous
             where TData : class
             where TMessage : class
         {
-            DateTime TimeProvider(ConsumeEventContext<TInstance, TData> context)
+            DateTime TimeProvider(EventContext<TInstance, TData> context)
             {
                 return DateTime.UtcNow + schedule.Delay;
             }
@@ -216,7 +219,7 @@ namespace Automatonymous
             where TData : class
             where TMessage : class
         {
-            DateTime TimeProvider(ConsumeEventContext<TInstance, TData> context)
+            DateTime TimeProvider(EventContext<TInstance, TData> context)
             {
                 return DateTime.UtcNow + delayProvider(context);
             }
@@ -232,7 +235,7 @@ namespace Automatonymous
             where TData : class
             where TMessage : class
         {
-            DateTime TimeProvider(ConsumeEventContext<TInstance, TData> context)
+            DateTime TimeProvider(EventContext<TInstance, TData> context)
             {
                 return DateTime.UtcNow + delayProvider(context);
             }

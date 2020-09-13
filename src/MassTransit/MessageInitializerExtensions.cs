@@ -1,6 +1,7 @@
 namespace MassTransit
 {
     using System.Threading.Tasks;
+    using GreenPipes;
     using Initializers;
 
 
@@ -13,7 +14,7 @@ namespace MassTransit
         /// <param name="values"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static Task<T> Init<T>(this ConsumeContext context, object values)
+        public static Task<T> Init<T>(this PipeContext context, object values)
             where T : class
         {
             return MessageInitializerCache<T>.InitializeMessage(context, values);

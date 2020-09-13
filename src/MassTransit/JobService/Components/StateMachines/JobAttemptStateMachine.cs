@@ -5,7 +5,7 @@ namespace MassTransit.JobService.Components.StateMachines
     using Automatonymous.Binders;
     using GreenPipes;
     using MassTransit.Contracts.JobService;
-
+    using MassTransit.Registration;
 
     public sealed class JobAttemptStateMachine :
         MassTransitStateMachine<JobAttemptSaga>
