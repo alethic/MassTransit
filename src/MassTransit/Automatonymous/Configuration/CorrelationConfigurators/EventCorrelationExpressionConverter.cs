@@ -22,7 +22,9 @@
         {
             var result = Visit(expression);
 
-            return RemoveMessageParameter(result as LambdaExpression);
+            var contextParameter = expression.Parameters[1];
+
+            return Expression.Lambda<Func<TInstance, bool>>(expression.Body)
         }
 
         static Expression<Func<TInstance, bool>> RemoveMessageParameter(LambdaExpression lambda)
